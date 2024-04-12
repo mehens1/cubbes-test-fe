@@ -8,8 +8,10 @@ class SmallButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding:
+          EdgeInsets.symmetric(horizontal: screenWidth * 0.15, vertical: 40),
       child: Material(
         color: Colors.black,
         borderRadius: BorderRadius.circular(8.0),

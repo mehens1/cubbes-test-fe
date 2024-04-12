@@ -42,15 +42,12 @@ class _LoginState extends State<Login> {
               labelText: 'Password',
               icon: Icons.lock,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 50),
-              child: SmallButton(
-                onPressed: () {
-                  Navigator.pushReplacement(
-                      context, MaterialPageRoute(builder: (context) => Home()));
-                },
-                text: "Login",
-              ),
+            SmallButton(
+              onPressed: () {
+                Navigator.pushReplacement(
+                    context, MaterialPageRoute(builder: (context) => Home()));
+              },
+              text: "Login",
             ),
             // const Spacer(),
             Row(

@@ -139,7 +139,6 @@ class _RegisterState extends State<Register> {
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
-          padding: const EdgeInsets.all(50),
           child: Column(
             children: [
               Image.asset(
