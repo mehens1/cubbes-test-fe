@@ -1,4 +1,5 @@
 import 'package:cubbes_test_fe/pages/welcome.dart';
+import 'package:cubbes_test_fe/utils/apiCalls.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -8,14 +9,13 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Cubbes Test',
+      title: 'Cubbes Test ${appName}',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
         useMaterial3: true,
       ),
       home: const Welcome(),
