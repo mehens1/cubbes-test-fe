@@ -1,3 +1,4 @@
+import 'package:cubbes_test_fe/components/pageLogo.dart';
 import 'package:cubbes_test_fe/pages/home.dart';
 import 'package:cubbes_test_fe/pages/login.dart';
 import 'package:flutter/material.dart';
@@ -33,23 +34,22 @@ class _WelcomeState extends State<Welcome> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Spacer(),
-            Image.asset(
-              'assets/images/Cubbes-Black.png',
-              width: MediaQuery.of(context).size.width * 0.5,
-            ),
-            const Spacer(),
-            const Padding(
+            Spacer(),
+            HeaderLogo(),
+            Spacer(),
+            Padding(
               padding: EdgeInsets.all(10.0),
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                color: Colors.black,
+              ),
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.all(50.0),
               child: Text('Version 1'),
             ),

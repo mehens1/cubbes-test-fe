@@ -1,3 +1,4 @@
+import 'package:cubbes_test_fe/components/pageLogo.dart';
 import 'package:cubbes_test_fe/components/passwordInput.dart';
 import 'package:cubbes_test_fe/components/smallButton.dart';
 import 'package:cubbes_test_fe/components/textInput.dart';
@@ -26,10 +27,7 @@ class _LoginState extends State<Login> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Spacer(),
-            Image.asset(
-              'assets/images/Cubbes-Black.png',
-              width: MediaQuery.of(context).size.width * 0.5,
-            ),
+            const HeaderLogo(),
             const Spacer(),
             const TitleText(text: 'Login'),
             TextInput(

@@ -1,3 +1,4 @@
+import 'package:cubbes_test_fe/components/pageLogo.dart';
 import 'package:cubbes_test_fe/components/smallButton.dart';
 import 'package:cubbes_test_fe/components/titleText.dart';
 import 'package:cubbes_test_fe/pages/login.dart';
@@ -17,43 +18,34 @@ class _HomeState extends State<Home> {
     return SafeArea(
       child: Scaffold(
         body: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 30.0),
-            child: Column(
-              children: [
-                Image.asset(
-                  'assets/images/Cubbes-Black.png',
-                  width: MediaQuery.of(context).size.width * 0.5,
-                ),
-                const SizedBox(height: 100),
-                const TitleText(text: "Dashboard"),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: GridView.count(
-                      crossAxisCount: 2,
-                      children: <Widget>[
-                        _dashboardMenuItem("Courses", Icons.subject, () {}),
-                        _dashboardMenuItem(
-                            "My Courses", Icons.list_alt_rounded, () {}),
-                        _dashboardMenuItem(
-                            "Time-Table", Icons.group_work_rounded, () {}),
-                        _dashboardMenuItem(
-                            "My Profile", Icons.account_circle, () {}),
-                      ],
-                    ),
+          child: Column(
+            children: [
+              const HeaderLogo(),
+              const TitleText(text: "Dashboard"),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: GridView.count(
+                    crossAxisCount: 2,
+                    children: <Widget>[
+                      _dashboardMenuItem("Courses", Icons.subject, () {}),
+                      _dashboardMenuItem(
+                          "My Courses", Icons.list_alt_rounded, () {}),
+                      _dashboardMenuItem(
+                          "Time-Table", Icons.group_work_rounded, () {}),
+                      _dashboardMenuItem(
+                          "My Profile", Icons.account_circle, () {}),
+                    ],
                   ),
                 ),
-                SmallButton(
-                    onPressed: () {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Login()));
-                    },
-                    text: "Log Out")
-              ],
-            ),
+              ),
+              SmallButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => const Login()));
+                  },
+                  text: "Log Out")
+            ],
           ),
         ),
       ),

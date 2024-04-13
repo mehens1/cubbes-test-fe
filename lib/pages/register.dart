@@ -1,14 +1,14 @@
 import 'dart:convert';
 
+import 'package:cubbes_test_fe/components/pageLogo.dart';
 import 'package:cubbes_test_fe/components/passwordInput.dart';
 import 'package:cubbes_test_fe/components/smallButton.dart';
 import 'package:cubbes_test_fe/components/textInput.dart';
 import 'package:cubbes_test_fe/components/titleText.dart';
 import 'package:cubbes_test_fe/pages/home.dart';
 import 'package:cubbes_test_fe/pages/login.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+// import 'package:http/http.dart' as http;
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -141,11 +141,7 @@ class _RegisterState extends State<Register> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Image.asset(
-                'assets/images/Cubbes-Black.png',
-                width: MediaQuery.of(context).size.width * 0.5,
-              ),
-              const SizedBox(height: 50),
+              const HeaderLogo(),
               const TitleText(text: 'Register'),
               TextInput(
                 controller: _firstNameController,
@@ -187,8 +183,8 @@ class _RegisterState extends State<Register> {
               const SizedBox(height: 20),
               SmallButton(
                 onPressed: () {
-                  Navigator.pushReplacement(
-                      context, MaterialPageRoute(builder: (context) => Home()));
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => const Home()));
                 },
                 text: "Sign Up",
               ),
