@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:cubbes_test_fe/utils/utils.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 // login function
 Future<http.Response> login(String username, String password) async {
@@ -184,3 +185,78 @@ Future<List<Map<String, dynamic>>> loadSemesters() async {
     rethrow;
   }
 }
+
+// load my courses
+Future<List<Map<String, dynamic>>> loadMyCourses() async {
+  try {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    final token = pref.getString('userToken');
+
+    if (token == null) {
+      throw Exception('User token is null');
+    }
+
+    final Map<String, String> headers = {
+      'Authorization': 'Bearer $token',
+      'Accept': 'application/json',
+    };
+
+    final response = await http.get(Uri.parse('$baseUrl/courses/my-courses'),
+        headers: headers);
+
+    if (response.statusCode == 200) {
+      final dynamic responseData = jsonDecode(response.body);
+      if (responseData.containsKey('courses')) {
+        final List<dynamic> data = responseData['courses'];
+        return data.map<Map<String, dynamic>>((item) {
+          return {
+            'name': item['course_title'],
+            'code': item['course_code'],
+          };
+        }).toList();
+      } else {
+        throw Exception('Response does not contain "data" key');
+      }
+    } else {
+      // Handle error
+      throw Exception('Failed to load courses: ${response.statusCode}');
+    }
+  } catch (e) {
+    // Handle error
+    print('Inner Error occurred while loading courses: $e');
+    rethrow;
+  }
+}
+
+// Future<List<Map<String, dynamic>>> loadMyCourses() async {
+//   try {
+//     SharedPreferences pref = await SharedPreferences.getInstance();
+//     final token = pref.getString('userToken');
+
+//     final Map<String, String> headers = {
+//       'Authorization': 'Bearer $token',
+//       'Accept': 'application/json',
+//       // Add more headers as needed
+//     };
+
+//     final response = await http.get(Uri.parse('$baseUrl/courses/my-courses'),
+//         headers: headers);
+
+//     if (response.statusCode == 200) {
+//       final List<dynamic> data = jsonDecode(response.body)['data'];
+//       return data.map<Map<String, dynamic>>((item) {
+//         return {
+//           'name': item['course_title'],
+//           'code': item['course_code'],
+//         };
+//       }).toList();
+//     } else {
+//       // Handle error
+//       throw Exception('Failed to load courses');
+//     }
+//   } catch (e) {
+//     // Handle error
+//     print('Inner Error occurred while loading courses: $e');
+//     rethrow;
+//   }
+// }

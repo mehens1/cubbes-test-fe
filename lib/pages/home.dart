@@ -1,10 +1,9 @@
 import 'package:cubbes_test_fe/components/pageLogo.dart';
 import 'package:cubbes_test_fe/components/smallButton.dart';
 import 'package:cubbes_test_fe/components/titleText.dart';
-import 'package:cubbes_test_fe/pages/login.dart';
+import 'package:cubbes_test_fe/pages/myCourses.dart';
 import 'package:cubbes_test_fe/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart'; // Import SharedPreferences
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -32,8 +31,14 @@ class _HomeState extends State<Home> {
               child: GridView.count(
                 crossAxisCount: 2,
                 children: <Widget>[
-                  _dashboardMenuItem(
-                      "My Courses", Icons.list_alt_rounded, () {}),
+                  _dashboardMenuItem("My Courses", Icons.list_alt_rounded, () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const MyCourses(),
+                      ),
+                    );
+                  }),
                   _dashboardMenuItem("Add Course", Icons.subject, () {}),
                   _dashboardMenuItem(
                       "Time-Table", Icons.group_work_rounded, () {}),
