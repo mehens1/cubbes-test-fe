@@ -1,5 +1,5 @@
 import 'package:cubbes_test_fe/pages/welcome.dart';
-import 'package:cubbes_test_fe/utils/apiCalls.dart';
+import 'package:cubbes_test_fe/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Cubbes Test ${appName}',
+      title: appName,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
         useMaterial3: true,

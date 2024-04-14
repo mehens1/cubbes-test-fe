@@ -2,8 +2,9 @@ import 'package:cubbes_test_fe/components/pageLogo.dart';
 import 'package:cubbes_test_fe/components/smallButton.dart';
 import 'package:cubbes_test_fe/components/titleText.dart';
 import 'package:cubbes_test_fe/pages/login.dart';
+import 'package:cubbes_test_fe/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:shared_preferences/shared_preferences.dart'; // Import SharedPreferences
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -14,39 +15,39 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   @override
+  void initState() {
+    super.initState();
+    checkUserLoggedIn(context);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Center(
-          child: Column(
-            children: [
-              const HeaderLogo(),
-              const TitleText(text: "Dashboard"),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: GridView.count(
-                    crossAxisCount: 2,
-                    children: <Widget>[
-                      _dashboardMenuItem("Courses", Icons.subject, () {}),
-                      _dashboardMenuItem(
-                          "My Courses", Icons.list_alt_rounded, () {}),
-                      _dashboardMenuItem(
-                          "Time-Table", Icons.group_work_rounded, () {}),
-                      _dashboardMenuItem(
-                          "My Profile", Icons.account_circle, () {}),
-                    ],
-                  ),
-                ),
+        body: Column(
+          children: [
+            const HeaderLogo(),
+            const TitleText(text: "Dashboard"),
+            Expanded(
+              child: GridView.count(
+                crossAxisCount: 2,
+                children: <Widget>[
+                  _dashboardMenuItem(
+                      "My Courses", Icons.list_alt_rounded, () {}),
+                  _dashboardMenuItem("Add Course", Icons.subject, () {}),
+                  _dashboardMenuItem(
+                      "Time-Table", Icons.group_work_rounded, () {}),
+                  _dashboardMenuItem("My Profile", Icons.account_circle, () {}),
+                ],
               ),
-              SmallButton(
-                  onPressed: () {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => const Login()));
-                  },
-                  text: "Log Out")
-            ],
-          ),
+            ),
+            SmallButton(
+              onPressed: () {
+                logout(context);
+              },
+              text: "Log Out",
+            )
+          ],
         ),
       ),
     );
